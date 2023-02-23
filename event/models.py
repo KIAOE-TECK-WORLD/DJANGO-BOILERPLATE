@@ -29,7 +29,7 @@ class BaseDateTime(models.Model):
 
 
 class User(AbstractBaseUser, PermissionsMixin, BaseDateTime):
-    username   = models.EmailField(max_length=255, unique=True, verbose='My Email Identifier')
+    username   = models.EmailField(max_length=255, unique=True)
     category   = models.CharField(max_length=255, choices=UserType.choices, default=UserType.default())
     email      = models.EmailField(max_length=255, null=True)
     is_active  = models.BooleanField(default=True)
@@ -66,7 +66,7 @@ class Event(BaseDateTime):
     status   = models.CharField(max_length=30, choices=StatusType.choices, default=StatusType.open())
     cover    = models.ImageField(upload_to='EVENT_COVER')
     code     = models.CharField(max_length=255, editable=False)
-    users    = models.ForeignKey(Host, on_delete=models.CASCADE)
+    users    = models.ForeignKey(User, on_delete=models.CASCADE)
     history  = HistoricalRecords()
 
 
