@@ -91,6 +91,7 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
